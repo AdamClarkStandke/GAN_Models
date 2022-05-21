@@ -11,10 +11,10 @@ Using a deep convolution GAN to create fashion clothes from a Gaussian distribut
 # Theoretical underpinnings of DCGAN
 - - - - - - - - - - - - - -
 
-As detailed in the book [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X) by Ivan Vasilev. The DCGAN stems from the landmark paper introduced in 2014 titled [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
+As detailed in the book [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X) by Ivan Vasilev. The DCGAN stems from the landmark paper introduced in 2014 titled [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf) The implementation of the paper's algorithm comes from a tensorflow tutorial titled [dcgan](https://www.tensorflow.org/tutorials/generative/dcgan)
 
 ## The generator: 
-> To learn the generator’s distribution p_g over data **x**, we define a prior on input noise variable p_z(z), then represent a mapping to data space as G(**z**;theta_g), where G is a differential function represented by a multilayer perceptron with parameters theta_g [^1]. 
+> To learn the generator’s distribution p_g over data **x**, we define a prior on input noise variable p_z(**z**), then represent a mapping to data space as G(**z**;θ_g), where G is a differential function represented by a multilayer perceptron with parameters θ_g [^1]. 
 
 This is represented by the following code:
 ```python
@@ -46,7 +46,7 @@ def build_generator(latent_input, weight_initialization, channel):
 ```
 Which is represented by the below image as found in the 2016 paper titled [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf) 
 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%201.22.59%20AM.png "DCGAN generator")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%201.22.59%20AM.png "DCGAN generator")[^2].
 
 
 
@@ -54,10 +54,40 @@ Which is represented by the below image as found in the 2016 paper titled [UNSUP
 
 
 ## The discriminator:
-> 
+> We also define a second multilayer perceptron D(**x**;θ_d) that outputs a single scalar. D(**x**) represents the probability
+that **x** came from the data rather than p_g.[^1].
 
+This is represented by the following code:
+```python
+def build_discriminator(width, height, depth, alpha=0.2):
+  model = Sequential(name='discriminator')
+  input_shape = (height, width, depth)
+  # first layer of discriminator network that downsamples image to 14x14 as determined by stride and 
+  # increases depth by 64
+  model.add(keras.layers.Conv2D(filters=64, kernel_size=(5, 5), strides=(2,2), padding='same', input_shape = input_shape))
+  model.add(keras.layers.BatchNormalization())
+  model.add(keras.layers.LeakyReLU(alpha=alpha))
+  # second layer of discriminator network that downsamples image to 7x7 and increaes depth to 128
+  model.add(keras.layers.Conv2D(filters=128, kernel_size=(5, 5), strides=(2,2), padding='same'))
+  model.add(keras.layers.BatchNormalization())
+  model.add(keras.layers.LeakyReLU(alpha=alpha))
+  # flatten 3D tensor to 1D tensor of size 7*7*128 = 6727
+  model.add(keras.layers.Flatten()) 
+  # apply dropout of 30% before feeding it to the dense layer
+  model.add(keras.layers.Dropout(0.3))
+  model.add(keras.layers.Dense(1, activation='sigmoid')) 
+  return model
+```
+## Value function and Training:
+> We train D to maximize the probability of assigning the correct label to both training examples and samples from G. We simultaneously train G to minimize log(1 − D(G(**z**))). In other words, D and G play the following two-player minimax game with
+value function V(G, D):
 
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%202.20.44%20AM.png "value function")[^1].
 
+However as the authors of the paper note this objective function does not perform in practice, since it may not provide sufficient gradients for the generator to acutally learn, especially during the early stages of learning when the discriminator is very accurate (i.e. outputing 0 rather than 1 so the gradient will be 0 and the weights of the generator will not move). So rather than training the generator to minimize log(1-D(G(**z**))), training is done to maximize log D(G(**z**)).[^1]. Having said that, I followed the tensorflow implementation which just used the binay cross entropy loss. Even though the loss worked very well on the MINST fashion dataset, for more complex datasets, that take many epochs of training time, the objective function should be changed to what is described in the paper.   
 
 
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
+[^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf) 
+
+
