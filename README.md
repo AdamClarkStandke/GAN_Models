@@ -1,13 +1,3 @@
-# Deep Convolutional GAN
-- - - - - - - - - - - - 
-
-Using a deep convolution GAN to create fashion clothes from a Gaussian distribution trained using the MINST fashion data set. **_Click below on the picture of [Daphne](https://www.youtube.com/channel/UCpIqTXVAk0a14YdkWX-hn9Q) to show the video of the transformation from random noise into actual fashion clothes that I think Daphne would include in her wardrobe! 👗 (espically if it is a [White Party](https://en.wikipedia.org/wiki/White_Party)_**)
-
-[![CLICK HERE](https://github.com/aCStandke/GAN_Models/blob/main/mqdefault.jpg)](https://youtu.be/4xKBck4LJjA)
-
-
----------------------------
-
 # Theoretical underpinnings of DCGAN
 - - - - - - - - - - - - - -
 
@@ -49,10 +39,6 @@ Which is represented by the below image as found in the 2016 paper titled [UNSUP
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%201.22.59%20AM.png "DCGAN generator")[^2].
 
 
-
-
-
-
 ## The discriminator:
 > We also define a second multilayer perceptron D(**x**;θ_d) that outputs a single scalar. D(**x**) represents the probability
 that **x** came from the data rather than p_g.[^1].
@@ -86,6 +72,15 @@ value function V(G, D):
 
 However as the authors of the paper note this objective function does not perform in practice, since it may not provide sufficient gradients for the generator to acutally learn, especially during the early stages of learning when the discriminator is very accurate (i.e. outputing 0 rather than 1 so the gradient will be 0 and the weights of the generator will not move). So rather than training the generator to minimize log(1-D(G(**z**))), training is done to maximize log D(G(**z**)).[^1]. Having said that, I followed the tensorflow implementation which just used the binay cross entropy loss. Even though the loss worked very well on the MINST fashion dataset, for more complex datasets, that take many epochs of training time, the objective function should be changed to what is described in the paper.   
 
+- - - - - - - - - - - - - -
+# Deep Convolutional GAN using MINST Fashion Dataset:
+
+
+Using a deep convolution GAN to create fashion clothes from a Gaussian distribution trained using the MINST fashion data set. **_Click below on the picture of [Daphne](https://www.youtube.com/channel/UCpIqTXVAk0a14YdkWX-hn9Q) to show the video of the transformation from random noise into actual fashion clothes that I think Daphne would include in her wardrobe! 👗 (espically if it is a [White Party](https://en.wikipedia.org/wiki/White_Party)_**)
+
+[![CLICK HERE](https://github.com/aCStandke/GAN_Models/blob/main/mqdefault.jpg)](https://youtu.be/4xKBck4LJjA)
+
+- - - - - - - - - - - - - -
 
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf) 
