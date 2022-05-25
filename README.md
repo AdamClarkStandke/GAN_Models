@@ -84,13 +84,13 @@ Using a deep convolution GAN to create fashion clothes from a Gaussian distribut
 # Deep Convolutional GAN using the Celeb-A Faces Dataset:
 
 Using a Using a deep convolution GAN to create new faces from a Gaussian distribution trained using the [Celeb-A Faces
-dataset](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html). After just training for five epochs these were fake faces that were generated(note that some of them look realistic, especially the faces with blond hair, lol):
+dataset](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html). After just training for five epochs these were fake faces that were generated(note that some of them look realistic, especially the women with the blond hair, lol):
 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%201.22.59%20AM.png "Epoch 1")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%201.22.59%20AM.png "Epoch 2")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%201.22.59%20AM.png "Epoch 3")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%201.22.59%20AM.png "Epoch 4")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%201.22.59%20AM.png "Epoch 5")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch1.png "Epoch 1")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch2.png "Epoch 2")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch3.png "Epoch 3")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch4.png "Epoch 4")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch5.png "Epoch 5")
 
 - - - - - - - - - - - -
 
