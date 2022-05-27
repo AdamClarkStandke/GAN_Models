@@ -113,14 +113,14 @@ Supervised Pix2Pix is a conditional GAN with an additional loss constraining the
 [^5].
 
 The architecture for the generator is described by the paper as the following:
-> To give the generator a means to circumvent the bottleneck for information like this, we add skip connections, following the general shape of a “U-Net”... Specifically, we add skip connections between each layer i and layer n − i, where n is the total number of layers. Each skip connection simply concatenates all channels at layer i with those at layer n − i.[^5].
+> To give the generator a means to circumvent the bottleneck for information like this, we add skip connections, following the general shape of a “U-Net”... Specifically, we add **skip connections between each layer i and layer n − i, where n is the total number of layers. Each skip connection simply concatenates all channels at layer i with those at layer n − i**.[^5].
 
 The architecture for the discriminator is described by the paper as the following:
 > [To motivate the GAN discriminator to only model high-frequency structures in image that are generated] it is sufficient to restrict our attention to
 the structure in local image patches. Therefore, we design
-a discriminator architecture – which we term a *PatchGAN*
+a discriminator architecture – which we term a **PatchGAN
 – that only penalizes structure at the scale of patches. This
-discriminator tries to classify if each *N ×N* patch in an image [as] real or fake. We run this discriminator convolutionally across the image, averaging all responses to provide the ultimate output of D.[^5].
+discriminator tries to classify if each N ×N patch in an image as real or fake**. We run this discriminator convolutionally across the image, averaging all responses to provide the ultimate output of D.[^5].
 
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
