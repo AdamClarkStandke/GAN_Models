@@ -105,7 +105,9 @@ As detailed in the book [Advanced Deep Learning with Python: Design and implemen
 ### Value function:
 D and G play the following two-player minimax game with the following value function V(G, D):
 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%202.20.44%20AM.png "value function")[^4].
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/conditional_value_func.png "conditional value function")[^4].
+
+###
 
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
