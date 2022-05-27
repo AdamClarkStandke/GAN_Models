@@ -3,7 +3,7 @@
 
 As detailed in the book [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X) by Ivan Vasilev. The DCGAN stems from the landmark paper introduced in 2014 titled [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf) The implementation of the paper's algorithm comes from a tensorflow tutorial titled [dcgan](https://www.tensorflow.org/tutorials/generative/dcgan)
 
-## The generator: 
+### The generator: 
 > To learn the generator’s distribution p_g over data **x**, we define a prior on input noise variable p_z(**z**), then represent a mapping to data space as G(**z**;θ_g), where G is a differential function represented by a multilayer perceptron with parameters θ_g [^1]. 
 
 This is represented by the following code:
@@ -39,7 +39,7 @@ Which is represented by the below image as found in the 2016 paper titled [UNSUP
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-21%201.22.59%20AM.png "DCGAN generator")[^2].
 
 
-## The discriminator:
+### The discriminator:
 > We also define a second multilayer perceptron D(**x**;θ_d) that outputs a single scalar. D(**x**) represents the probability
 that **x** came from the data rather than p_g.[^1].
 
@@ -64,7 +64,7 @@ def build_discriminator(width, height, depth, alpha=0.2):
   model.add(keras.layers.Dense(1, activation='sigmoid')) 
   return model
 ```
-## Value function and Training:
+### Value function and Training:
 > We train D to maximize the probability of assigning the correct label to both training examples and samples from G. We simultaneously train G to minimize log(1 − D(G(**z**))). In other words, D and G play the following two-player minimax game with
 value function V(G, D):
 
@@ -73,7 +73,7 @@ value function V(G, D):
 However as the authors of the paper note this objective function does not perform in practice, since it may not provide sufficient gradients for the generator to acutally learn, especially during the early stages of learning when the discriminator is very accurate (i.e. outputing 0 rather than 1 so the gradient will be 0 and the weights of the generator will not move). So rather than training the generator to minimize log(1-D(G(**z**))), training is done to maximize log D(G(**z**)).[^1].  
 
 - - - - - - - - - - - - - -
-# Deep Convolutional GAN using MINST Fashion Dataset:
+### Deep Convolutional GAN using MINST Fashion Dataset:
 
 
 Using a deep convolution GAN to create fashion clothes from a Gaussian distribution trained using the MINST fashion data set. **_Click below on the picture of [Daphne](https://www.youtube.com/channel/UCpIqTXVAk0a14YdkWX-hn9Q) to show the video of the transformation from random noise into actual fashion clothes that I think Daphne would include in her wardrobe! 👗 (espically if it is a [White Party](https://en.wikipedia.org/wiki/White_Party)_**)
@@ -81,7 +81,7 @@ Using a deep convolution GAN to create fashion clothes from a Gaussian distribut
 [![CLICK HERE](https://github.com/aCStandke/GAN_Models/blob/main/mqdefault.jpg)](https://youtu.be/4xKBck4LJjA)
 
 - - - - - - - - - - - - - -
-# Deep Convolutional GAN using the Celeb-A Faces Dataset:
+### Deep Convolutional GAN using the Celeb-A Faces Dataset:
 
 Using a Using a deep convolution GAN to create new faces from a Gaussian distribution trained using the [Celeb-A Faces
 dataset](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html). After just training for five epochs these were fake faces that were generated(note that some of them look realistic, especially the women with the blond hair, lol):
@@ -93,10 +93,15 @@ dataset](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html). After just training
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch5.png "Epoch 5")
 
 - - - - - - - - - - - -
+# Theoretical underpinnings of Pix2Pix
+- - - - - - - - - - - - - - - - - - - -
+As detailed in the book [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X) by Ivan Vasilev. The Pix2Pix paper [Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/pdf/1611.07004.pdf) develops upon ideas from the paper titled [Conditional Generative Adversarial Nets](https://arxiv.org/pdf/1411.1784.pdf) introduced in 2014. The implementation of the Pix2Pix algorithm comes from a tensorflow tutorial titled [pix2pix: Image-to-image translation with a conditional GAN](https://www.tensorflow.org/tutorials/generative/pix2pix).
 
+![alt text]()[^3]
 
 
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
-[^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf) 
+[^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
+[^3]: [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X)
 
 
