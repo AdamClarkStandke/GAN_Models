@@ -93,7 +93,7 @@ dataset](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html). After just training
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch5.png "Epoch 5")
 
 - - - - - - - - - - - -
-# Theoretical underpinnings of Conditional GAN and Pix2Pix
+# Theoretical underpinnings of Conditional GAN and Supervised Pix2Pix
 - - - - - - - - - - - - - - - - - - - -
 As detailed in the book [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X) by Ivan Vasilev. The Pix2Pix paper [Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/pdf/1611.07004.pdf) develops upon ideas from the paper titled [Conditional Generative Adversarial Nets](https://arxiv.org/pdf/1411.1784.pdf) introduced in 2014. The implementation of the Pix2Pix algorithm comes from a tensorflow tutorial titled [pix2pix: Image-to-image translation with a conditional GAN](https://www.tensorflow.org/tutorials/generative/pix2pix).
 
@@ -107,8 +107,20 @@ D and G play the following two-player minimax game with the following value func
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/conditional_value_func.png "conditional value function")[^4].
 
-### Pix2Pix:
+### Supervised Pix2Pix:
+Supervised Pix2Pix is a conditional GAN with an additional loss constraining the generator, which the paper outlines in section 3.1 is a L1 loss rather than the traidtional L2 loss. This helps with blurring.[^5].
 
+[^5].
+
+The architecture for the generator is described by the paper as the following:
+> To give the generator a means to circumvent the bottleneck for information like this, we add skip connections, following the general shape of a “U-Net”... Specifically, we add skip connections between each layer i and layer n − i, where n is the total number of layers. Each skip connection simply concatenates all channels at layer i with those at layer n − i.[^5].
+
+The architecture for the discriminator is described by the paper as the following:
+> [To motivate the GAN discriminator to only model high-frequency structures in image that are generated] it is sufficient to restrict our attention to
+the structure in local image patches. Therefore, we design
+a discriminator architecture – which we term a *PatchGAN*
+– that only penalizes structure at the scale of patches. This
+discriminator tries to classify if each *N ×N* patch in an image [as] real or fake. We run this discriminator convolutionally across the image, averaging all responses to provide the ultimate output of D.[^5].
 
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
