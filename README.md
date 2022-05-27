@@ -100,7 +100,7 @@ As detailed in the book [Advanced Deep Learning with Python: Design and implemen
 ### Conditional GAN:
 > Generative adversarial nets can be extended to a conditional model if both the generator and discriminator are conditioned on some extra information **y**. **y** could be any kind of auxiliary information, such as class labels or data from other modalities. We can perform the conditioning by feeding **y** into the both the discriminator and generator as additional input layer. In the generator the *prior distribution of input noise* p<sub>z</sub>(**z**), and **y** are combined in *joint hidden representation/distribution*, and the adversarial training framework allows for considerable flexibility in how this *joint hidden representation/distribution* is composed. [^4].
 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-26%208.54.57%20PM.png "Conditional GAN")[^3]
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-26%208.54.57%20PM.png "Conditional GAN")[^3].
 
 ### Value function:
 D and G play the following two-player minimax game with the following value function V(G, D):
