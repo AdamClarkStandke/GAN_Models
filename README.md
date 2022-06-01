@@ -127,10 +127,13 @@ a discriminator architecture – which we term a **PatchGAN
 discriminator tries to classify if each N ×N patch in an image as real or fake**. We run this discriminator convolutionally across the image, averaging all responses to provide the ultimate output of D.[^5].
 
 --------------------------------------------------------------
-### Example 3: Supervised Pix2Pix using the Cityscapes Dataset for Image Segmentation 
+### Example 3: Supervised Pix2Pix for Image Segmentation on the Cityscapes Dataset
 
-This was generated from the test set after 40,000 steps of training the generator. 
+After training the semantic segementation generator for 40,000 steps it was tested on the test set of the [Cityscape Dataset](https://www.cityscapes-dataset.com/) The following test results were generated:
+
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/download.png)
+
+
 
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
