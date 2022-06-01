@@ -132,6 +132,10 @@ discriminator tries to classify if each N ×N patch in an image as real or fake*
 After training the semantic segementation generator for 40,000 steps it was tested on the test set of the [Cityscape Dataset](https://www.cityscapes-dataset.com/) The following five test results were outputted to compare the actual semantic segmentation i.e. ground truth to the semantic segmentaion generator i.e. predicted image:
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/download.png)
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_four.png)
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_one.png)
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_three.png)
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_two.png)
 
 The sorce code for the semantic segmentation generator can be found here: [Supervised Pix2Pix](https://github.com/aCStandke/GAN_Models/blob/main/Pix2pix.ipynb) and the semantic segmentation generator that can be loaded  to generate semantic segmentations can be found here: [Semantic Segmentation Generator](https://github.com/aCStandke/GAN_Models/blob/main/saved_model.pb)
 
