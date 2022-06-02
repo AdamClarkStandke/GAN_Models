@@ -139,7 +139,7 @@ After training the semantic segementation generator for 40,000 steps it was test
 
 The sorce code for the semantic segmentation generator can be found here: [Supervised Pix2Pix](https://github.com/aCStandke/GAN_Models/blob/main/Pix2pix.ipynb) and the semantic segmentation generator that can be loaded  to generate semantic segmentations can be found here: [Semantic Segmentation Generator](https://github.com/aCStandke/GAN_Models/blob/main/saved_model.pb)
 - - - - - - - - - - - - - - - - - - - -
-# Theoretical underpinnings of Cycle-Consistent Adverserial Networks
+# Theoretical underpinnings of Cycle-Consistent Adverserial Networks (CycleGAN)
 - - - - - - - - - - - - - - - - - - - -
 
 
