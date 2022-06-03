@@ -141,6 +141,8 @@ The sorce code for the semantic segmentation generator can be found here: [Super
 - - - - - - - - - - - - - - - - - - - -
 # Theoretical underpinnings of Cycle-Consistent Adverserial Networks (CycleGAN)
 - - - - - - - - - - - - - - - - - - - -
+Unlike Pix2Pix in which paired training was required i.e. need both input and target pairs, CycleGan works on unpaired data i.e. no information is provided as to which input matches to which target.[^6]
+
 
 
 
@@ -149,4 +151,4 @@ The sorce code for the semantic segmentation generator can be found here: [Super
 [^3]: [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X)
 [^4]: [Conditional Generative Adversarial Nets](https://arxiv.org/pdf/1411.1784.pdf)
 [^5]: [pix2pix: Image-to-image translation with a conditional GAN](https://www.tensorflow.org/tutorials/generative/pix2pix)
-
+[^6]: [Cycle-Consistent Adverserial Networks (CycleGAN)](https://arxiv.org/pdf/1703.10593.pdf)
