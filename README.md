@@ -147,8 +147,7 @@ Unlike Pix2Pix in which paired training was required i.e. need both input and ta
 > Our objective contains two types of terms: adversarial losses for matching the distribution of generated images to the data distribution in the target
 domain; and cycle consistency losses to prevent the learned mappings G and F from contradicting each other[^6]
 
-
-
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanLoss.png "total loss")[^6]
 
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
