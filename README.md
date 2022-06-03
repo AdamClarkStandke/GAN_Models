@@ -1,4 +1,4 @@
-# Theoretical underpinnings of DCGAN
+# Theoretical underpinnings of GAN and DCGAN
 - - - - - - - - - - - - - -
 
 As detailed in the book [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X) by Ivan Vasilev. The DCGAN stems from the landmark paper introduced in 2014 titled [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf) The implementation of the paper's algorithm comes from a tensorflow tutorial titled [dcgan](https://www.tensorflow.org/tutorials/generative/dcgan)
@@ -64,7 +64,7 @@ def build_discriminator(width, height, depth, alpha=0.2):
   model.add(keras.layers.Dense(1, activation='sigmoid')) 
   return model
 ```
-## Value function and Training:
+## GAN Loss function:
 > We train D to maximize the probability of assigning the correct label to both training examples and samples from G. We simultaneously train G to minimize log(1 − D(G(**z**))). In other words, D and G play the following two-player minimax game with
 value function V(G, D):
 
@@ -93,7 +93,7 @@ dataset](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html). After just training
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch5.png "Epoch 5")
 
 - - - - - - - - - - - -
-# Theoretical underpinnings of Conditional GAN and Supervised Pix2Pix
+# Theoretical underpinnings of Conditional GAN and Supervised Pix2Pix 
 - - - - - - - - - - - - - - - - - - - -
 As detailed in the book [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X) by Ivan Vasilev. The Pix2Pix paper [Image-to-Image Translation with Conditional Adversarial Networks](https://arxiv.org/pdf/1611.07004.pdf) develops upon ideas from the paper titled [Conditional Generative Adversarial Nets](https://arxiv.org/pdf/1411.1784.pdf) introduced in 2014. The implementation of the Pix2Pix algorithm comes from a tensorflow tutorial titled [pix2pix: Image-to-image translation with a conditional GAN](https://www.tensorflow.org/tutorials/generative/pix2pix).
 
@@ -102,7 +102,7 @@ As detailed in the book [Advanced Deep Learning with Python: Design and implemen
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-26%208.54.57%20PM.png "Conditional GAN")[^3].
 
-### Value function:
+## Conditional GAN Loss function:
 D and G play the following two-player minimax game with the following value function V(G, D):
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/conditional_value_func.png "conditional value function")[^4].
@@ -110,7 +110,7 @@ D and G play the following two-player minimax game with the following value func
 ## Supervised Pix2Pix:
 Supervised Pix2Pix is a conditional GAN with an additional loss constraining the generator, which the paper outlines in section 3.1 is a L1 loss rather than the traidtional L2 loss. This helps with blurring.[^5].
 
-### Value function:
+## Supervised Pix2Pix Value function:
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-26%2011.50.28%20PM.png "generator l1 loss")[^5].
 
@@ -142,6 +142,10 @@ The sorce code for the semantic segmentation generator can be found here: [Super
 # Theoretical underpinnings of Cycle-Consistent Adverserial Networks (CycleGAN)
 - - - - - - - - - - - - - - - - - - - -
 Unlike Pix2Pix in which paired training was required i.e. need both input and target pairs, CycleGan works on unpaired data i.e. no information is provided as to which input matches to which target.[^6]
+
+## CycleGAN Loss function:
+> Our objective contains two types of terms: adversarial losses for matching the distribution of generated images to the data distribution in the target
+domain; and cycle consistency losses to prevent the learned mappings G and F from contradicting each other[^6]
 
 
 
