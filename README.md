@@ -145,12 +145,13 @@ Unlike Pix2Pix in which paired training was required i.e. need both input and ta
 
 ## CycleGAN Loss function:
 > Our objective contains two types of terms: adversarial losses for matching the distribution of generated images to the data distribution in the target domain; and cycle consistency losses to prevent the learned mappings G and F from contradicting each other 
-
-> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanLoss.png "total loss")
-
-> We apply an adversarial losses to both mapping functions. For the mapping function G : X → Y and its discriminator D<sub>Y</sub> , we express the objective as:
-
 > 
+> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanLoss.png "total loss")
+>
+> We apply an adversarial losses to both mapping functions. For the mapping function G : X → Y and its discriminator D<sub>Y</sub> , we express the objective as:
+>
+> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/adverserialLoss.png "adverserial loss")
+>
 > where G tries to generate images G(*x*) that look similar to images from domain Y , while D<sub>Y</sub> aims to distinguish between translated samples G(*x*) and real samples *y*. G aims to minimize this objective against an adversary D that tries to maximize it, i.e., min<sub>G</sub>max<sub>D<sub>Y</sub></sub> *L*<sub>GAN</sub>(G, D<sub>Y</sub> , X, Y). We introduce a similar adversarial loss for the mapping function F : Y → X and its discriminator D<sub>X</sub> as well: i.e., min<sub>F</sub>max<sub>D<sub>X</sub></sub> *L*<sub>GAN</sub>(F, D<sub>X</sub>, Y, X).
 
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
