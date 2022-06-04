@@ -149,7 +149,7 @@ the target domain, where any of the learned mappings can
 induce an output distribution that matches the target distribution. Thus, adversarial losses alone cannot guarantee
 that the learned function can map an individual input *x*<sub>i</sub> to a desired output *y*<sub>i</sub> Thus to reduce the space of possible mapping functions, a constraint is introduced in which the mapping functions should be cycle-consistent in the forward direction i.e. x → G(x) → F(G(x)) ≈ x and in the backward direction y → F(y) → G(F(y)) ≈ y 
 >
-> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/adverserialLoss.png "cycle consistency loss")
+> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cycleloss.png "cycle consistency loss")
 > 
 >[^6]
 
