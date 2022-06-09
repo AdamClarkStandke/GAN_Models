@@ -151,7 +151,14 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 >
 > ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cycleloss.png "cycle consistency loss")
 > 
+> Furthermore, for mapping paintings to photos (and thus also, photos to paintings), we find that it is helpful to introduce an additional loss to encourage the mapping to preserve color composition between the input and output. In particular, we adopt the technique of Taigman et al. and regularize the generator to be near an identity mapping when real samples of the target domain are provided as the input to the generator: 
+> 
+> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cycleloss.png "identity loss")
+> 
+> Without Lidentity, the generator G and F are free to change the tint of input images when there is no need to. For example, when learning the mapping between Monet’s paintings and Flickr photographs, the generator often maps paintings of daytime to photographs taken during sunset, because such a mapping may be equally valid under the adversarial loss and cycle consistency loss
+>
 >[^6]
+
 
 ### Example 4: CyleGAN for Image Segmentation on the Cityscapes Dataset
 
