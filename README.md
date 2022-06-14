@@ -114,7 +114,7 @@ a discriminator architecture – which we term a **PatchGAN
 – that only penalizes structure at the scale of patches. This
 discriminator tries to classify if each N ×N patch in an image as real or fake**. We run this discriminator convolutionally across the image, averaging all responses to provide the ultimate output of D.[^5].
 
-### Example 3: Supervised Pix2Pix for Image Segmentation on the Cityscapes Dataset
+### Example 3: Supervised/Paired Pix2Pix for Image Segmentation on the Cityscapes Dataset
 
 After training the semantic segementation generator for 40,000 steps it was tested on the test set of the [Cityscape Dataset](https://www.cityscapes-dataset.com/) The following five test results were outputted to compare the actual semantic segmentation i.e. ground truth to the semantic segmentaion generator i.e. predicted image:
 
@@ -166,12 +166,15 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 
 **CycleGAN w/ ResNet Backbone:**
 
-**Pix2Pix:**
+**Supervised/Paired Pix2Pix:**
+After training the paired Pix2Pix generator for 25,000 steps using a lambada value of 1000 for l1 loss function,the following five test results were outputted detailing the some of the preditions of semantic segmentaion generator i.e. predicted image [^7].
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_1.png "pix2pix segmentation")  
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_2.png "pix2pix segmentation")       
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_3.png "pix2pix segmentation")
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_4.png "pix2pix segmentation")
+
+The semantic segmentation generator model weights can be found here: [25K_1000Lambda_Semantic Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/saved_model.pb) 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
@@ -180,3 +183,4 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 [^4]: [Conditional Generative Adversarial Nets](https://arxiv.org/pdf/1411.1784.pdf)
 [^5]: [pix2pix: Image-to-image translation with a conditional GAN](https://www.tensorflow.org/tutorials/generative/pix2pix)
 [^6]: [Cycle-Consistent Adverserial Networks (CycleGAN)](https://arxiv.org/pdf/1703.10593.pdf)
+[^7]: Pretty good results, shows that increasing the l1 loss term provides significant improvements, especally when it comes to identifying pedestrians
