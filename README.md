@@ -160,8 +160,16 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 >[^6]
 
 
-### Example 4: CyleGAN for Image Segmentation on the Cityscapes Dataset
+### Example 4: CyleGAN v. Pix2Pix for Image Segmentation on cityscape
 
+**CycleGAN w/ Pix2Pix U-net Backbone w/ instance normalization:**
+
+**CycleGAN w/ ResNet Backbone:**
+
+**Pix2Pix:**
+
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cycleloss.png "pix2pix segmentation")  
+     
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
