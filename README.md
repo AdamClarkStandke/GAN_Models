@@ -160,21 +160,21 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 >[^6]
 
 
-### Example 4: CyleGAN v. Pix2Pix for Image Segmentation on cityscape
+### Example 4: CyleGAN versus Pix2Pix for Segmentating the Cityscape Images
 
 **CycleGAN w/ Pix2Pix U-net Backbone w/ instance normalization:**
 
 **CycleGAN w/ ResNet Backbone:**
 
 **Supervised/Paired Pix2Pix:**
-After training the paired Pix2Pix generator for 25,000 steps using a lambada value of 1000 for l1 loss function,the following five test results were outputted detailing the some of the preditions of semantic segmentaion generator i.e. predicted image [^7].
-
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_1.png "pix2pix segmentation")  
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_2.png "pix2pix segmentation")       
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_3.png "pix2pix segmentation")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_4.png "pix2pix segmentation")
-
-The semantic segmentation generator model weights can be found here: [25K_1000Lambda_Semantic Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/saved_model.pb) 
+> After training the paired Pix2Pix generator for 25,000 steps using a lambada value of 1000 for l1 loss function,the following five test results were outputted detailing the some of the preditions of semantic segmentaion generator i.e. predicted image [^7].
+>
+> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_1.png "pix2pix segmentation")  
+> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_2.png "pix2pix segmentation")       
+> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_3.png "pix2pix segmentation")
+> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_4.png "pix2pix segmentation")
+> 
+> The semantic segmentation generator model weights can be found here: [25K_1000Lambda_Semantic Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k.pb) 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
