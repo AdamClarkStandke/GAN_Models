@@ -124,7 +124,7 @@ After training the semantic segementation generator for 40,000 steps it was test
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_three.png)
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_two.png)
 
-The sorce code for the semantic segmentation generator can be found here: [Supervised Pix2Pix](https://github.com/aCStandke/GAN_Models/blob/main/Pix2pix.ipynb) and the semantic segmentation generator model weights can be found here: [Semantic Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/saved_model.pb)
+The semantic segmentation generator model weights can be found here: [Semantic Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/saved_model.pb)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Theoretical underpinnings of Cycle-Consistent Adverserial Networks (CycleGAN)
 Unlike Pix2Pix in which paired training was required i.e. need both input and target pairs, CycleGan works on unpaired data i.e. no information is provided as to which input matches to which target.[^6]
@@ -168,8 +168,10 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 
 **Pix2Pix:**
 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cycleloss.png "pix2pix segmentation")  
-     
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_1.png "pix2pix segmentation")  
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_2.png "pix2pix segmentation")       
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_3.png "pix2pix segmentation")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_4.png "pix2pix segmentation")
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
