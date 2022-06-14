@@ -161,13 +161,16 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 
 
 ### Example 4: CyleGAN versus Pix2Pix for Segmentating the Cityscape Images
+The objective of this task is to transform a set of real-world images from the Cityscapes dataset[^7] into semantic segmentations. The dataset contains 5,000 finely annotated images split into training, and validation sets (i.e. 2975/500 split). The dense annotation contains 30 common classes of road, person, car, etc. as detailed by the following figure [^8]: 
+
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
 **CycleGAN w/ Pix2Pix U-net Backbone w/ instance normalization:**
 
 **CycleGAN w/ ResNet Backbone:**
 
 **Supervised/Paired Pix2Pix:**
-> After training the paired Pix2Pix generator for 25,000 steps using a lambada value of 1000 for l1 loss function,the following five test results were outputted detailing the some of the preditions of semantic segmentaion generator i.e. predicted image [^7].
+> After training the paired Pix2Pix generator for 25,000 steps using a lambada value of 1000 for l1 loss function,the following five test results were outputted detailing the some of the preditions of semantic segmentaion generator i.e. predicted image [^9].
 >
 > ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_1.png "pix2pix segmentation")  
 > ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_2.png "pix2pix segmentation")       
@@ -183,4 +186,8 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 [^4]: [Conditional Generative Adversarial Nets](https://arxiv.org/pdf/1411.1784.pdf)
 [^5]: [pix2pix: Image-to-image translation with a conditional GAN](https://www.tensorflow.org/tutorials/generative/pix2pix)
 [^6]: [Cycle-Consistent Adverserial Networks (CycleGAN)](https://arxiv.org/pdf/1703.10593.pdf)
-[^7]: Pretty good results, shows that increasing the l1 loss term provides significant improvements, especally when it comes to identifying pedestrians
+[^7]: Cordts, M., Omran, M., Ramos, S., Rehfeld, T., Enzweiler, M., Benenson, R.,
+Franke, U., Roth, S., Schiele, B.: The cityscapes dataset for semantic urban scene
+understanding. In: CVPR. (2016)
+[^8]: [ICNet for Real-Time Semantic Segmentation](https://hszhao.github.io/papers/eccv18_icnet.pdf)
+[^9]: Pretty good results, shows that increasing the l1 loss term provides significant improvements, especally when it comes to identifying pedestrians
