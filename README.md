@@ -181,13 +181,6 @@ The objective of this task is to transform a set of real-world images from the C
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
 **CycleGAN w/ Pix2Pix U-Net Backbone w/ instance normalization:**
-The training for CycleGan is much more intensive (especially using Pix2Pix's U-Net backbone for the generator) since two generators are being trained, i.e. G and F. The number of trainable parameters just for the two generators is over 100 million. With that being said, I decided on a lambda value of 651 to weight the cycle-consistent loss more heavily in the overall CycleGan loss function to make sure that the predicted segmentation is as close to the real segmentaion image. I settled on 651 after the inital value of 1000 made the road segment portion  randomly curve into the sidewalk portion, lol. I trained for 50 epochs eventhough the paper [^6] trained for 100 epochs, but colab would not let me train that long given my 9.99 dollar account(and I am not upgrading to 50 dollars a month for that type acess lol). So like what they say: when life gives you lemons,you make lemonade! Here are some of my test images (warning they are very inaacurate lol):
-
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cylegan_unet_1.png "CycleGAN") 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cyclegan_unet_2.png "CycleGAN") 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cyclegan_unet_3.png "CycleGAN") 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cyclegan_unet_4.png "CycleGAN") 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cyclegan_unet_5.png "CycleGAN") 
 
 **CycleGAN w/ ResNet Backbone:**
 
