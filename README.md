@@ -180,7 +180,7 @@ The objective of this task is to transform a set of real-world images from the C
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
-Each of the models were trained for 10 epochs, even though they should be trained at least for 100 epochs(and the paper trained for 200 epochs). However, due to CycleGANs being very compute intensive even when using a GPU(or TPU), to do 10 epochs, which amounts to 29,750 steps it took 11 hours! So for 200 epochs, it would take 2 days of train the model, lol I am not that devoted! 
+Each of the models were trained for 10 epochs, even though they should be trained at least for 100 epochs(and the paper trained for 200 epochs). However, due to CycleGANs being very compute intensive even when using a GPU(or TPU), to do 10 epochs, which amounts to 29,750 steps it took 11 hours! So for 200 epochs, it would take 2 days of training the model, lol I am not that devoted! 
 
 **CycleGAN w/ Pix2Pix U-Net Backbone w/ instance normalization:**
 
