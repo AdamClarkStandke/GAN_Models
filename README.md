@@ -96,10 +96,10 @@ D and G play the following two-player minimax game with the following value func
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/conditional_value_func.png "conditional value function")[^4].
 
-## Supervised Pix2Pix:
-Supervised Pix2Pix is a conditional GAN with an additional loss constraining the generator, which the paper outlines in section 3.1 is a L1 loss rather than the traidtional L2 loss. This helps with blurring.[^5].
+## Paired Pix2Pix:
+Paired Pix2Pix is a conditional GAN with an additional loss constraining the generator, which the paper outlines in section 3.1 is a L1 loss rather than the traidtional L2 loss. This helps with blurring.[^5].
 
-## Supervised Pix2Pix Loss function:
+## Paired Pix2Pix Loss function:
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Screenshot%202022-05-26%2011.50.28%20PM.png "generator l1 loss")[^5].
 
@@ -114,12 +114,12 @@ a discriminator architecture – which we term a **PatchGAN
 – that only penalizes structure at the scale of patches. This
 discriminator tries to classify if each N ×N patch in an image as real or fake**. We run this discriminator convolutionally across the image, averaging all responses to provide the ultimate output of D.[^5].
 
-### Example 3: Supervised/Paired Pix2Pix for Image Segmentation on the Cityscapes Dataset
+### Example 3: Paired Pix2Pix for Image Segmentation on the Cityscapes Dataset
 The objective of this task is to transform a set of real-world images from the Cityscapes dataset[^7] into semantic segmentations. The dataset contains 5,000 finely annotated images split into training, and validation sets (i.e. 2975/500 split). The dense annotation contains 30 common classes of road, person, car, etc. as detailed by the following figure [^8]: 
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
-**Default Supervised/Paired Pix2Pix Model:**
+**Default Paired Pix2Pix Model**:
 After training the semantic segementation generator for 40,000 steps it was tested on the test set of the [Cityscape Dataset](https://www.cityscapes-dataset.com/) The following five test results were outputted to compare the actual semantic segmentation i.e. ground truth to the semantic segmentaion generator i.e. predicted image:
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/download.png)
@@ -130,8 +130,8 @@ After training the semantic segementation generator for 40,000 steps it was test
 
 The default semantic segmentation generator model weights can be found here: [Default Semantic Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/saved_model.pb)
 
-**Custom Supervised/Paired Pix2Pix Model:**
-This time the Pix2Pix generator was trained for 25,000 steps and used a lambada value of 1000 for the l1 loss function. Since the L1 loss  regularizes the generator model to output predicted images that are plausible translations of the source image, I decided to weight it 1 order of magnitude higher than [^5] especially when it came to segmenting riders(seemed to help). The following five test results were outputted detailing the some of the preditions of semantic segmentaion generator i.e. predicted image [^9].
+**Custom Paired Pix2Pix Model**:
+This time the Pix2Pix generator was trained for 25,000 steps and used a lambada value of 1000 for the l1 loss function. Since the L1 loss  regularizes the generator model to output predicted images that are plausible translations of the source image, I decided to weight it 1 order of magnitude higher than [^5] especially when it came to segmenting riders(seemed to help). The following five test results were outputted detailing the some of the preditions of the semantic segmentaion generator i.e. predicted image [^9].
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_1.png "pix2pix segmentation")  
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_2.png "pix2pix segmentation")       
@@ -144,7 +144,7 @@ The custom semantic segmentation generator model weights can be found here: [Cus
 # Theoretical underpinnings of Cycle-Consistent Adverserial Networks (CycleGAN)
 Unlike Pix2Pix in which paired training was required i.e. need both input and target pairs, CycleGan works on unpaired data i.e. no information is provided as to which input matches to which target.[^6]
 
-## CycleGAN Loss function:
+## Unpaired CycleGAN Loss function:
 > Our objective contains two types of terms: adversarial losses for matching the distribution of generated images to the data distribution in the target domain; and cycle consistency losses to prevent the learned mappings G and F from contradicting each other 
 > 
 > ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanLoss.png "total loss")
@@ -175,16 +175,29 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 >[^6]
 
 
-### Example 4: CyleGAN versus Pix2Pix for Segmentating the Cityscape Images
+### Example 4: Unpaired CyleGAN for Image Segmentation on the Cityscape Images
 The objective of this task is to transform a set of real-world images from the Cityscapes dataset[^7] into semantic segmentations. The dataset contains 5,000 finely annotated images split into training, and validation sets (i.e. 2975/500 split). The dense annotation contains 30 common classes of road, person, car, etc. as detailed by the following figure [^8]: 
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
+Each of the models were trained for 10 epochs, even though they should be trained at least for 100 epochs(and the paper trained for 200 epochs). However, due to CycleGANs being very compute intensive even when using a GPU(or TPU), to do 10 epochs, which amounts to 29,750 steps it took 11 hours! So for 200 epochs, it would take 2 days of train the model, lol I am not that devoted! 
+
 **CycleGAN w/ Pix2Pix U-Net Backbone w/ instance normalization:**
 
+1. **LOSS FUNCTIONS:**
+   - *Binary Focal Cross-Entropy*: [Focal Loss](https://medium.com/swlh/focal-loss-what-why-and-how-df6735f26616). Code can can be found here: [CycleGAN-FocalLoss](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanUnet_BinaryFocalEntropy_Gamma2.ipynb)
+   - *Binary Cross-Entropy*: 
+2. **IMAGE POOL SIZE:**
+   - *Pool Size 3 w/ Focal Cross-Entropy*: 
+   - *Pool Size 3 w/ Binary Cross-Entropy*:
+ 
 **CycleGAN w/ ResNet Backbone:**
 
 
+1. **IMAGE POOL SIZE:**
+   - *Pool Size 3*:
+   - *Pool Size 5*:
+   - *Pool Size 10*:
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
