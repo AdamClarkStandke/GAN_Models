@@ -206,7 +206,13 @@ To implement this image buffer I turned to the CycleGAN implementation done by X
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_5.png "test 5")
 
 Code can can be found here: [Focal CycleGan](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanUnet_BinaryFocalEntropy_Gamma2.ipynb)
-   - *Binary Cross-Entropy*: 
+   - *Binary Cross-Entropy*: ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_1.png "test 1")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_2.png "test 2")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_3.png "test 3")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_4.png "test 4")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_5.png "test 5")
+
+Code can can be found here: [Binary Cross CycleGan](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanUnet_BinaryCrossEntropyipynb.ipynb)
 2. **IMAGE POOL SIZE:**
    - *Pool Size 5 w/ Focal Cross-Entropy*: 
    - *Pool Size 5 w/ Binary Cross-Entropy*:
