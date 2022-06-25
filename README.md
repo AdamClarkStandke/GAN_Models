@@ -199,11 +199,13 @@ To implement this image buffer I turned to the CycleGAN implementation done by X
 **CycleGAN w/ Pix2Pix U-Net Backbone w/ instance normalization:**
 
 1. **LOSS FUNCTIONS:**
-   - *Binary Focal Cross-Entropy*: Code can can be found here: ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch1.png "Epoch 1")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch2.png "Epoch 2")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch3.png "Epoch 3")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch4.png "Epoch 4")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch5.png "Epoch 5")
+   - *Binary Focal Cross-Entropy*: ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_1.png "test 1")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_2.png "test 2")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_3.png "test 3")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_4.png "test 4")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_5.png "test 5")
+
+Code can can be found here: [Focal CycleGan](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanUnet_BinaryFocalEntropy_Gamma2.ipynb)
    - *Binary Cross-Entropy*: 
 2. **IMAGE POOL SIZE:**
    - *Pool Size 3 w/ Focal Cross-Entropy*: 
