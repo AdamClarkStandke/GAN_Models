@@ -222,6 +222,7 @@ Code can can be found here: [Binary Cross CycleGan](https://github.com/aCStandke
 
 
 1. **IMAGE POOL SIZE:**
+   - *Pool Size 0*:
    - *Pool Size 5*:
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
