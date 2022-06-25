@@ -182,7 +182,7 @@ The objective of this task is to transform a set of real-world images from the C
 
 Each of the models were trained for 10 epochs, even though they should be trained at least for 100 epochs(and the paper trained for 200 epochs). However, due to CycleGANs being very computationally intensive even when using a GPU(or a hardware accelerator like TPU).For example, to do 10 epochs, which amounts to 29,750 steps of training it took 11 hours! So for 200 epochs, it would take 2 days of training, lol I am not that devoted but the results would be much better! 
 
-Because of the low number of epochs, I decide to play with the loss functions for the CycleGAN implementation using the Pix2Pix U-net Backbone. In addition to using Binary Cross-entropy, I decided to try using Binary Focal Cross-Entropy as detailed by [^10]. Focal Cross-Entropy was developed for object detection, but as the authors detail: 
+Because of the low number of epochs, I decide to play with the loss functions for the CycleGAN implementation using the Pix2Pix U-net Backbone. In addition to using Binary Cross-entropy, I decided to try using Binary Focal Cross-Entropy as detailed by [^10] Focal Cross-Entropy was developed for object detection, but as the authors detail: 
 
 > The Focal Loss is designed to address the one-stage object detection scenario in which there is an extreme imbalance between foreground and background classes during training (e.g., 1:1000)...[a] common method for addressing class imbalance is to introduce a weighting factor α ∈ [0,1] for class 1 and 1−α for class −1 (i.e. balanced cross-entropy)...[w]hile α balances the importance of positive/negative examples, it
 *does not differentiate between easy/hard examples. Instead, we propose to reshape the loss function to down-weight easy examples and thus focus training on hard negatives* 
@@ -190,11 +190,11 @@ Because of the low number of epochs, I decide to play with the loss functions fo
 
 I decided to try this loss out, since the cityscape data set is very imbalenced in regards to easy images (i.e. an alleyway with just cars) versus hard images (i.e. a pedestrian cross-walk with different car types like trucks, motorcycles, people, bikes,and traffic signs).
 
-In addition to the focal loss I wanted to see the effect that an Image buffer would have in regards to better segmentations. As the authors of [^11] state:  
+In addition to the focal loss I wanted to see the effect that an Image buffer would have in regards to better segmentations. As the authors state:  
 
-> [T]o reduce model oscillation... we...update discriminators D<sub>X</sub> and D<sub>Y</sub> using a history of generated images rather than the ones produced by the latest generative networks. We keep an image buffer that stores the 50 previously generated images.[^11]
+> [T]o reduce model oscillation... we...update discriminators D<sub>X</sub> and D<sub>Y</sub> using a history of generated images rather than the ones produced by the latest generative networks. We keep an image buffer that stores the 50 previously generated images.[^9]
 
-To implement this image buffer I turned to the CycleGAN implementation done by Xiaowei-hu which can be found here: [CycleGAN] (https://github.com/xiaowei-hu/CycleGAN-tensorflow). After playing around with the sizes, I realized that a buffer of 50 was way to big for the number of epochs I was using. Because I noticed that generally the generators produced pretty accurate segmentaions as time went on, an upper limit of 30 was decided on (lol using my sixth sense). 
+To implement this image buffer I turned to the CycleGAN implementation done by Xiaowei-hu which can be found here: [CycleGAN](https://github.com/xiaowei-hu/CycleGAN-tensorflow). After playing around with the sizes, I realized that a buffer of 50 was way to big for the number of epochs I was using. Because I noticed that generally the generators produced pretty accurate segmentaions for a short range, an upper limit of 5 was decided on (lol using my sixth sense). 
 
 **CycleGAN w/ Pix2Pix U-Net Backbone w/ instance normalization:**
 
@@ -208,8 +208,8 @@ To implement this image buffer I turned to the CycleGAN implementation done by X
 Code can can be found here: [Focal CycleGan](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanUnet_BinaryFocalEntropy_Gamma2.ipynb)
    - *Binary Cross-Entropy*: 
 2. **IMAGE POOL SIZE:**
-   - *Pool Size 3 w/ Focal Cross-Entropy*: 
-   - *Pool Size 3 w/ Binary Cross-Entropy*:
+   - *Pool Size 5 w/ Focal Cross-Entropy*: 
+   - *Pool Size 5 w/ Binary Cross-Entropy*:
  
 **CycleGAN w/ ResNet Backbone:**
 
