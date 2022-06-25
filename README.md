@@ -180,12 +180,23 @@ The objective of this task is to transform a set of real-world images from the C
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
-Each of the models were trained for 10 epochs, even though they should be trained at least for 100 epochs(and the paper trained for 200 epochs). However, due to CycleGANs being very compute intensive even when using a GPU(or TPU), to do 10 epochs, which amounts to 29,750 steps it took 11 hours! So for 200 epochs, it would take 2 days of training the model, lol I am not that devoted! 
+Each of the models were trained for 10 epochs, even though they should be trained at least for 100 epochs(and the paper trained for 200 epochs). However, due to CycleGANs being very computationally intensive even when using a GPU(or a hardware accelerator like TPU).For example, to do 10 epochs, which amounts to 29,750 steps of training it took 11 hours! So for 200 epochs, it would take 2 days of training, lol I am not that devoted but the results would be much better! 
+
+Because of the low number of epochs, I decide to play with the loss functions for the CycleGAN implementation using the Pix2Pix U-net Backbone. In addition to using Binary Cross-entropy, I decided to try using Binary Focal Cross-Entropy as detailed by [^10]. Focal Cross-Entropy was developed for object detection, but as the authors detail: 
+
+> The Focal Loss is designed to address the one-stage object detection scenario in which there is an extreme imbalance between foreground and background classes during training (e.g., 1:1000)...[a] common method for addressing class imbalance is to introduce a weighting factor α ∈ [0,1] for class 1 and 1−α for class −1 (i.e. balanced cross-entropy)...[w]hile α balances the importance of positive/negative examples, it
+*does not differentiate between easy/hard examples. Instead, we propose to reshape the loss function to down-weight easy examples and thus focus training on hard negatives* 
+
+> The novel loss is defined as: FL(p<sub>t</sub>) = −(1 − p<sub>t</sub>)<sup>γ</sup>log(p<sub>t</sub>).
+
+I decided to try this loss out, since the cityscape data set is very imbalenced in regards to easy images (i.e. an ally with just cars) versus hard images (i.e. a pedestrian cross-walk with different car types like trucks and motorcycles, people, bikes,and traffic signs).
+
+In addition
 
 **CycleGAN w/ Pix2Pix U-Net Backbone w/ instance normalization:**
 
 1. **LOSS FUNCTIONS:**
-   - *Binary Focal Cross-Entropy*: [Focal Loss](https://medium.com/swlh/focal-loss-what-why-and-how-df6735f26616). Code can can be found here: [CycleGAN-FocalLoss](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanUnet_BinaryFocalEntropy_Gamma2.ipynb)
+   - *Binary Focal Cross-Entropy*: Code can can be found here: [CycleGAN-FocalLoss](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanUnet_BinaryFocalEntropy_Gamma2.ipynb)
    - *Binary Cross-Entropy*: 
 2. **IMAGE POOL SIZE:**
    - *Pool Size 3 w/ Focal Cross-Entropy*: 
@@ -211,3 +222,4 @@ Franke, U., Roth, S., Schiele, B.: The cityscapes dataset for semantic urban sce
 understanding. In: CVPR. (2016)
 [^8]: [ICNet for Real-Time Semantic Segmentation](https://hszhao.github.io/papers/eccv18_icnet.pdf)
 [^9]: Pretty good results, shows that increasing the l1 loss term provides significant improvements, especally when it comes to identifying pedestrians
+[^10]: [Focal Loss for Dense Object Detection](https://arxiv.org/pdf/1708.02002.pdf)
