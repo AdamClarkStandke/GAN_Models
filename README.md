@@ -215,9 +215,7 @@ Code can can be found here: [Focal CycleGan](https://github.com/aCStandke/GAN_Mo
 
 
 1. **IMAGE POOL SIZE:**
-   - *Pool Size 3*:
    - *Pool Size 5*:
-   - *Pool Size 10*:
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
