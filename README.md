@@ -115,7 +115,7 @@ a discriminator architecture – which we term a **PatchGAN
 discriminator tries to classify if each N ×N patch in an image as real or fake**. We run this discriminator convolutionally across the image, averaging all responses to provide the ultimate output of D.[^5].
 
 ### Example 3: Supervised Pix2Pix for Image Segmentation on the Cityscapes Dataset
-The objective of this task is to transform a set of real-world images from the Cityscapes dataset[^7] into semantic segmentations. The dataset contains 5,000 finely annotated images split into training, and validation sets (i.e. 2975/500 split). The dense annotation contains 30 common classes of road, person, car, etc. as detailed by the following figure [^8]: 
+The objective of this task is to transform a set of real-world images from the Cityscapes dataset[^8] into semantic segmentations. The dataset contains 5,000 finely annotated images split into training, and validation sets (i.e. 2975/500 split). The dense annotation contains 30 common classes of road, person, car, etc. as detailed by the following figure [^9]: 
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
@@ -131,7 +131,7 @@ After training the semantic segementation generator for 40,000 steps it was test
 The default semantic segmentation generator model weights can be found here: [Default Semantic Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/saved_model.pb)
 
 **Custom Pix2Pix Model**:
-This time the Pix2Pix generator was trained for 25,000 steps and used a lambada value of 1000 for the l1 loss function. Since the L1 loss  regularizes the generator model to output predicted images that are plausible translations of the source image, I decided to weight it 1 order of magnitude higher than [^5] especially when it came to segmenting riders(seemed to help). The following five test results were outputted detailing the some of the preditions of the semantic segmentaion generator i.e. predicted image [^9].
+This time the Pix2Pix generator was trained for 25,000 steps and used a lambada value of 1000 for the l1 loss function. Since the L1 loss  regularizes the generator model to output predicted images that are plausible translations of the source image, I decided to weight it 1 order of magnitude higher than [^5] especially when it came to segmenting riders(seemed to help). The following five test results were outputted detailing the some of the preditions of the semantic segmentaion generator i.e. predicted image [^6].
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_1.png "pix2pix segmentation")  
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_2.png "pix2pix segmentation")       
@@ -142,9 +142,10 @@ The custom semantic segmentation generator model weights can be found here: [Cus
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Theoretical underpinnings of Cycle-Consistent Adverserial Networks (CycleGAN)
-Unlike Pix2Pix in which paired training was required i.e. need both input and target pairs, CycleGan works on unpaired data i.e. no information is provided as to which input matches to which target.[^6]
+Unlike Pix2Pix in which paired training was required i.e. need both input and target pairs, CycleGan works on unpaired data i.e. no information is provided as to which input matches to which target.[^7]
 
-## Unsupervised CycleGAN Loss function:
+## Unsupervised CycleGAN Loss functions:
+**Adversarial loss**
 > Our objective contains two types of terms: adversarial losses for matching the distribution of generated images to the data distribution in the target domain; and cycle consistency losses to prevent the learned mappings G and F from contradicting each other 
 > 
 > ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanLoss.png "total loss")
@@ -155,6 +156,7 @@ Unlike Pix2Pix in which paired training was required i.e. need both input and ta
 >
 > where G tries to generate images G(*x*) that look similar to images from domain Y , while D<sub>Y</sub> aims to distinguish between translated samples G(*x*) and real samples *y*. G aims to minimize this objective against an adversary D that tries to maximize it, i.e., min<sub>G</sub>max<sub>D<sub>Y</sub></sub> *L*<sub>GAN</sub>(G, D<sub>Y</sub> , X, Y). We introduce a similar adversarial loss for the mapping function F : Y → X and its discriminator D<sub>X</sub> as well: i.e., min<sub>F</sub>max<sub>D<sub>X</sub></sub> *L*<sub>GAN</sub>(F, D<sub>X</sub>, Y, X).
 > 
+**Cycle loss**
 >Adversarial training can, in theory, learn mappings G
 and F that produce outputs identically distributed as target
 domains Y and X respectively. However,
@@ -166,75 +168,36 @@ that the learned function can map an individual input *x*<sub>i</sub> to a desir
 >
 > ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/cycleloss.png "cycle consistency loss")
 > 
+**Identity loss**
 > Furthermore, for mapping paintings to photos (and thus also, photos to paintings), we find that it is helpful to introduce an additional loss to encourage the mapping to preserve color composition between the input and output. In particular, we adopt the technique of Taigman et al. and regularize the generator to be near an identity mapping when real samples of the target domain are provided as the input to the generator: 
 > 
 > ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/identloss.png "identity loss")
 > 
 > Without L<sub>identity</sub>, the generator G and F are free to change the tint of input images when there is no need to. For example, when learning the mapping between Monet’s paintings and Flickr photographs, the generator often maps paintings of daytime to photographs taken during sunset, because such a mapping may be equally valid under the adversarial loss and cycle consistency loss
 >
->[^6]
+>[^7]
 
-
-### Example 4: Unsupervised CyleGAN for Image Segmentation on the Cityscape Images
-The objective of this task is to transform a set of real-world images from the Cityscapes dataset[^7] into semantic segmentations. The dataset contains 5,000 finely annotated images split into training, and validation sets (i.e. 2975/500 split). The dense annotation contains 30 common classes of road, person, car, etc. as detailed by the following figure [^8]: 
+### Example 4: Unsupervised CyleGAN w/ ResNet backbone for Image Segmentation
+The objective of this task is to transform a set of real-world images from the Cityscapes dataset[^8] into semantic segmentations. The dataset contains 5,000 finely annotated images split into training, and validation sets (i.e. 2975/500 split). The dense annotation contains 30 common classes of road, person, car, etc. as detailed by the following figure [^9]: 
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
-Each of the models were trained for 10 epochs, even though they should be trained at least for 100 epochs(and the paper trained for 200 epochs). However, due to CycleGANs being very computationally intensive even when using a GPU(or a hardware accelerator like TPU).For example, to do 10 epochs, which amounts to 29,750 steps of training it took 11 hours! So for 200 epochs, it would take 2 days of training, lol I am not that devoted but the results would be much better! 
-
-Because of the low number of epochs, I decide to play with the loss functions for the CycleGAN implementation using the Pix2Pix U-net Backbone. In addition to using Binary Cross-entropy, I decided to try using Binary Focal Cross-Entropy as detailed by [^10] Focal Cross-Entropy was developed for object detection, but as the authors detail: 
-
-> The Focal Loss is designed to address the one-stage object detection scenario in which there is an extreme imbalance between foreground and background classes during training (e.g., 1:1000)...[a] common method for addressing class imbalance is to introduce a weighting factor α ∈ [0,1] for class 1 and 1−α for class −1 (i.e. balanced cross-entropy)...[w]hile α balances the importance of positive/negative examples, it
-*does not differentiate between easy/hard examples. Instead, we propose to reshape the loss function to down-weight easy examples and thus focus training on hard negatives* 
-> The novel loss is defined as: FL(p<sub>t</sub>) = −(1 − p<sub>t</sub>)<sup>γ</sup>log(p<sub>t</sub>).[^10]
-
-I decided to try this loss out, since the cityscape data set is very imbalenced in regards to easy images (i.e. an alleyway with just cars) versus hard images (i.e. a pedestrian cross-walk with different car types like trucks, motorcycles, people, bikes,and traffic signs).
-
-In addition to the focal loss I wanted to see the effect that an Image buffer would have in regards to better segmentations. As the authors state:  
-
-> [T]o reduce model oscillation... we...update discriminators D<sub>X</sub> and D<sub>Y</sub> using a history of generated images rather than the ones produced by the latest generative networks. We keep an image buffer that stores the 50 previously generated images.[^9]
-
-To implement this image buffer I turned to the CycleGAN implementation done by Xiaowei-hu which can be found here: [CycleGAN](https://github.com/xiaowei-hu/CycleGAN-tensorflow). After playing around with the sizes, I realized that a buffer of 50 was way to big for the number of epochs I was using. Because I noticed that generally the generators produced pretty accurate segmentaions for a short range, an upper limit of 5 was decided on (lol using my sixth sense). 
-
-**CycleGAN w/ Pix2Pix U-Net Backbone w/ instance normalization:**
-
-1. **LOSS FUNCTIONS:**
-   - *Binary Focal Cross-Entropy*: ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_1.png "test 1")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_2.png "test 2")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_3.png "test 3")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_4.png "test 4")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/Focal_5.png "test 5")
-
-Code can can be found here: [Focal CycleGan](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanUnet_BinaryFocalEntropy_Gamma2.ipynb)
-   - *Binary Cross-Entropy*: ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_1.png "test 1")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_2.png "test 2")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_3.png "test 3")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_4.png "test 4")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/binary_5.png "test 5")
-
-Code can can be found here: [Binary Cross CycleGan](https://github.com/aCStandke/GAN_Models/blob/main/CycleGanUnet_BinaryCrossEntropyipynb.ipynb)
-
-2. **IMAGE POOL SIZE:**
-   - *Pool Size 5 w/ Focal Cross-Entropy*: 
-   - *Pool Size 5 w/ Binary Cross-Entropy*:
- 
-**CycleGAN w/ ResNet Backbone:**
+After reading and implementing the tensorflow tutorial on [CycleGan](https://www.tensorflow.org/tutorials/generative/cyclegan) I decided to continue by implementing CycleGAN with a ResNet backbone. This was done after reading How to Implement CycleGAN Models From Scratch With Keras by [Jason Brownlee](https://machinelearningmastery.com/how-to-develop-cyclegan-models-from-scratch-with-keras/). I basically followed his implementation except for the image buffer portion, which was taken from  Xiaowei-hu which can be found here: [CycleGAN](https://github.com/xiaowei-hu/CycleGAN-tensorflow). I trained the model for 100 epochs and the following five test images were generated.
 
 
-1. **IMAGE POOL SIZE:**
-   - *Pool Size 0*:
-   - *Pool Size 5*:
 
+The semantic segmentation generator model weights can be found here:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
 [^3]: [Advanced Deep Learning with Python: Design and implement advanced next-generation AI solutions using TensorFlow and PyTorch](https://www.amazon.com/Advanced-Deep-Learning-Python-next-generation/dp/178995617X)
 [^4]: [Conditional Generative Adversarial Nets](https://arxiv.org/pdf/1411.1784.pdf)
 [^5]: [pix2pix: Image-to-image translation with a conditional GAN](https://www.tensorflow.org/tutorials/generative/pix2pix)
-[^6]: [Cycle-Consistent Adverserial Networks (CycleGAN)](https://arxiv.org/pdf/1703.10593.pdf)
-[^7]: Cordts, M., Omran, M., Ramos, S., Rehfeld, T., Enzweiler, M., Benenson, R.,
+[^6]: Pretty good results, shows that increasing the l1 loss term provides significant improvements, especally when it comes to identifying pedestrians
+[^7]: [Cycle-Consistent Adverserial Networks (CycleGAN)](https://arxiv.org/pdf/1703.10593.pdf)
+[^8]: Cordts, M., Omran, M., Ramos, S., Rehfeld, T., Enzweiler, M., Benenson, R.,
 Franke, U., Roth, S., Schiele, B.: The cityscapes dataset for semantic urban scene
 understanding. In: CVPR. (2016)
-[^8]: [ICNet for Real-Time Semantic Segmentation](https://hszhao.github.io/papers/eccv18_icnet.pdf)
-[^9]: Pretty good results, shows that increasing the l1 loss term provides significant improvements, especally when it comes to identifying pedestrians
-[^10]: [Focal Loss for Dense Object Detection](https://arxiv.org/pdf/1708.02002.pdf)
+[^9]: [ICNet for Real-Time Semantic Segmentation](https://hszhao.github.io/papers/eccv18_icnet.pdf)
+
+
