@@ -182,7 +182,11 @@ The objective of this task is to transform a set of real-world images from the C
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
-After reading and implementing the tensorflow tutorial on [CycleGan](https://www.tensorflow.org/tutorials/generative/cyclegan) I decided to continue by implementing CycleGAN with a ResNet backbone. This was done after reading How to Implement CycleGAN Models From Scratch With Keras by [Jason Brownlee](https://machinelearningmastery.com/how-to-develop-cyclegan-models-from-scratch-with-keras/). I basically followed his implementation except for the image buffer portion, which was taken from  Xiaowei-hu which can be found here: [CycleGAN](https://github.com/xiaowei-hu/CycleGAN-tensorflow). At first I wanted to follow [^7] and traind for 200 epochs, however, I did not realize how intensive the model is with respect to training, lol.  Instead I trained the model for 50 epochs using Adam as the optimizer with a learning rate of 0.0002 and 0.5 for the first moment of the exponential decay rate. Then I trained the model for another 50 epochs using stochastic gradient descent  with the same learning rate and a linear decay rate of the learning rate over 50. The following five test images were generated (ugh, lol):
+After reading and implementing the tensorflow tutorial on [CycleGan](https://www.tensorflow.org/tutorials/generative/cyclegan) I decided to continue by implementing CycleGAN with a ResNet backbone. This was done after reading How to Implement CycleGAN Models From Scratch With Keras by [Jason Brownlee](https://machinelearningmastery.com/how-to-develop-cyclegan-models-from-scratch-with-keras/). I basically followed his implementation except for the image buffer portion, which was taken from  Xiaowei-hu which can be found here: [CycleGAN](https://github.com/xiaowei-hu/CycleGAN-tensorflow). At first I wanted to follow [^7] and traind for 200 epochs, however, I did not realize how intensive the model is with respect to training, lol.  Instead I trained the model for 50 epochs using Adam as the optimizer with a learning rate of 0.0002 and 0.5 for the first moment of the exponential decay rate. 
+The following five test images were generated:
+
+
+Then I trained the model for another 50 epochs using stochastic gradient descent  with the same learning rate and a linear decay rate of the learning rate over 50. The following five test images were generated:
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
