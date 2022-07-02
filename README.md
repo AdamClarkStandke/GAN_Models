@@ -119,15 +119,15 @@ The objective of this task is to transform a set of real-world images from the C
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
-**Custom Pix2Pix Model**:
-This time the Pix2Pix generator was trained for 25,000 steps and used a lambada value of 1000 for the l1 loss function. Since the L1 loss  regularizes the generator model to output predicted images that are plausible translations of the source image, I decided to weight it 1 order of magnitude higher than [^5] especially when it came to segmenting riders(seemed to help). The following five test results were outputted detailing the some of the preditions of the semantic segmentaion generator i.e. predicted image [^6].
+**Pix2Pix Model**:
+The Pix2Pix generator was trained for 25,000 steps and used a lambada value of 1000 for the l1 loss function. Since the L1 loss  regularizes the generator model to output predicted images that are plausible translations of the source image, I decided to weight it 1 order of magnitude higher than [^5] especially when it came to segmenting riders(seemed to help). The following five test results were outputted detailing the some of the preditions of the semantic segmentaion generator i.e. predicted image [^6].
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_1.png "pix2pix segmentation")  
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_2.png "pix2pix segmentation")       
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_3.png "pix2pix segmentation")
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_4.png "pix2pix segmentation")
 
-The following colab notebook can be found here: [Pix2Pix]()
+The following colab notebook can be found here: [Pix2Pix](https://github.com/aCStandke/GAN_Models/blob/main/Pix2pix.ipynb)
 The segmentation generator model weights can be found here: [ Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k.pb) 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
@@ -172,8 +172,8 @@ The objective of this task is to transform a set of real-world images from the C
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
-After reading and implementing the tensorflow tutorial on [CycleGan](https://www.tensorflow.org/tutorials/generative/cyclegan) I decided to continue by implementing CycleGAN with a ResNet backbone. This was done after reading How to Implement CycleGAN Models From Scratch With Keras by [Jason Brownlee](https://machinelearningmastery.com/how-to-develop-cyclegan-models-from-scratch-with-keras/). I basically followed his implementation except for the image buffer portion, which was taken from  Xiaowei-hu which can be found here: [CycleGAN](https://github.com/xiaowei-hu/CycleGAN-tensorflow). At first I wanted to follow [^7] and traind for 200 epochs, however, I did not realize how intensive the model is with respect to training, lol.  Instead I trained the model for 50 epochs using Adam as the optimizer with a learning rate of 0.0002 and 0.5 for the first moment of the exponential decay rate. 
-The following five test images were generated for this training portion:
+**CyleGAN Model**:
+After reading and implementing the tensorflow tutorial on [CycleGan](https://www.tensorflow.org/tutorials/generative/cyclegan) I decided implement CycleGAN with a ResNet backbone as was done in [^7]. The implementation basically follows the Jason Brownlee's implementation in his article: How to Implement CycleGAN Models From Scratch With Keras [Jason Brownlee](https://machinelearningmastery.com/how-to-develop-cyclegan-models-from-scratch-with-keras/).The image buffer portion, which was taken from  Xiaowei-hu which can be found here: [CycleGAN](https://github.com/xiaowei-hu/CycleGAN-tensorflow) (I could of used Jason's image buffer implementation, but I was working with eagertensors at the time, rather than numpy arrays, and I am lazy lol). At first I wanted to follow [^7] and train for 200 epochs, however, I did not realize how intensive the training would be for this model. So,instead I trained the model for 50 epochs using Adam as the optimizer with a learning rate of 0.0002 and 0.5 for the first moment of the exponential rate decay. The following five test images were generated for this portion of the training:
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/first_50_epochs.png "seg one")
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/first_50_epochs(2).png "seg two") 
@@ -189,23 +189,23 @@ And to see which of the two discriminators were less fooled in regards to the im
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/diffiicultiesFoolingDiscriminator.png "Discriminator output")
 
  
-Then I trained the model for another 50 epochs using stochastic gradient descent  with the same learning rate but used linear rate decay in which the learning rate decayed over the numer of epochs (i.e.50). The following five test images were generated:
+Then I trained the model for another 50 epochs using stochastic gradient descent with the same learning rate but used linear rate decay in which the learning rate was decayed over the numer of epochs (i.e.50). The following five test images were generated:
 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay.png, "linear rate decay")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_1.png, "linear rate decay")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_2.png, "linear rate decay")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_3.png, "linear rate decay")
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_4.png, "linear rate decay")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay.png "linear rate decay")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_1.png "linear rate decay")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_2.png "linear rate decay")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_3.png "linear rate decay")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_4.png "linear rate decay")
 
 The following image shows the translations from  photos to segmentations and vice versa:
 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/both_image_translation_tasks.jpg, "Image translation comparisons")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/both_image_translation_tasks.jpg "Image translation comparisons")
 
 And to see which of the two discriminators were less fooled in regards to the image translation task, one 16x16 output patch was generated, in which values closer to one meant that the discriminator was being fooled, while values closer to zero meant that the discriminator was not being fooled by the generator:
 
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/discriminator_output.png, "16x16 patch")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/discriminator_output.png "16x16 patch")
 
-The following colab notebook can be found here: [CycleGAN]()
+The following colab notebook can be found here: [CycleGAN](https://github.com/aCStandke/GAN_Models/blob/main/CycleGANv2020_ResNetCompositeBufferModel.ipynb)
 The model weights for the segmentation generator on the cityscape photos can be found here: [Segmentation Generator]() 
 The model weights for the photo gernator on the cityscape segmentations can be found here:[Photo Generator]() 
 
