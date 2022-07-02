@@ -119,17 +119,6 @@ The objective of this task is to transform a set of real-world images from the C
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/labels%20of%20colors.png "classes") 
 
-**Default Pix2Pix Model**:
-After training the semantic segementation generator for 40,000 steps it was tested on the test set of the [Cityscape Dataset](https://www.cityscapes-dataset.com/) The following five test results were outputted to compare the actual semantic segmentation i.e. ground truth to the semantic segmentaion generator i.e. predicted image:
-
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/download.png)
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_four.png)
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_one.png)
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_three.png)
-![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_two.png)
-
-The default semantic segmentation generator model weights can be found here: [Default Semantic Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/saved_model.pb)
-
 **Custom Pix2Pix Model**:
 This time the Pix2Pix generator was trained for 25,000 steps and used a lambada value of 1000 for the l1 loss function. Since the L1 loss  regularizes the generator model to output predicted images that are plausible translations of the source image, I decided to weight it 1 order of magnitude higher than [^5] especially when it came to segmenting riders(seemed to help). The following five test results were outputted detailing the some of the preditions of the semantic segmentaion generator i.e. predicted image [^6].
 
@@ -138,7 +127,8 @@ This time the Pix2Pix generator was trained for 25,000 steps and used a lambada 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_3.png "pix2pix segmentation")
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k_4.png "pix2pix segmentation")
 
-The custom semantic segmentation generator model weights can be found here: [Custom Semantic Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k.pb) 
+The following colab notebook can be found here: [Pix2Pix]()
+The segmentation generator model weights can be found here: [ Segmentation Generator Model](https://github.com/aCStandke/GAN_Models/blob/main/pix2pixGen1000_l1loss_25k.pb) 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 # Theoretical underpinnings of Cycle-Consistent Adverserial Networks (CycleGAN)
@@ -194,27 +184,32 @@ The following image shows the translations from  photos to segmentations and vic
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/generators.png "Image translation comparisons")
 
-And to see which of the two discriminators were less accurate in regards to the image translation task, one 16x16 output patch was generated, in which values closer to one means that the discriminator is being fooled, while values closer to zero means that the discriminator is not being fooled by the generator: 
+And to see which of the two discriminators were less fooled in regards to the image translation task, one 16x16 output patch was generated, in which values closer to one meant that the discriminator was being fooled, while values closer to zero meant that the discriminator was  not being fooled by the generator: 
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/diffiicultiesFoolingDiscriminator.png "Discriminator output")
 
-As the above image shows, that for this 16x1translation task from photos to segmentations is alot harder than segmentations to photos.  
+ 
+Then I trained the model for another 50 epochs using stochastic gradient descent  with the same learning rate but used linear rate decay in which the learning rate decayed over the numer of epochs (i.e.50). The following five test images were generated:
 
-Then I trained the model for another 50 epochs using stochastic gradient descent  with the same learning rate and a linear decay rate of the learning rate over 50. The following five test images were generated:
-
-![alt text]()
-![alt text]()
-![alt text]()
-![alt text]()
-![alt text]()
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay.png, "linear rate decay")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_1.png, "linear rate decay")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_2.png, "linear rate decay")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_3.png, "linear rate decay")
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/test_image_lineardecay_4.png, "linear rate decay")
 
 The following image shows the translations from  photos to segmentations and vice versa:
 
-![alt text]()
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/both_image_translation_tasks.jpg, "Image translation comparisons")
 
-And to see which of the two discriminators were less accurate in regards to the image translation task, one 16x16 output patch was generated, in which values closer to one means that the discriminator is being fooled, while values closer to zero means that the discriminator is not being fooled by the generator:
+And to see which of the two discriminators were less fooled in regards to the image translation task, one 16x16 output patch was generated, in which values closer to one meant that the discriminator was being fooled, while values closer to zero meant that the discriminator was not being fooled by the generator:
 
-![alt text]()
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/discriminator_output.png, "16x16 patch")
+
+The following colab notebook can be found here: [CycleGAN]()
+The model weights for the segmentation generator on the cityscape photos can be found here: [Segmentation Generator]() 
+The model weights for the photo gernator on the cityscape segmentations can be found here:[Photo Generator]() 
+
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
