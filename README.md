@@ -206,8 +206,9 @@ And to see which of the two discriminators were less fooled in regards to the im
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/discriminator_output.png "16x16 patch")
 
 The following colab notebook can be found here: [CycleGAN](https://github.com/aCStandke/GAN_Models/blob/main/CycleGANv2020_ResNetCompositeBufferModel.ipynb)
-The model weights for the segmentation generator on the cityscape photos can be found here: [Segmentation Generator]() 
-The model weights for the photo gernator on the cityscape segmentations can be found here:[Photo Generator]() 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+# Neural style transfer
 
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
