@@ -194,15 +194,27 @@ The following image shows the translations from  photos to segmentations and vic
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/generators.png "Image translation comparisons")
 
-And to see which of the two discriminators were less accurate in regards to the image translation task, the following 16x16 output patch was generated, in which values closer to one means that the discriminator is being fooled, while values closer to zero means that the discriminator is not being fooled by the generator: 
+And to see which of the two discriminators were less accurate in regards to the image translation task, one 16x16 output patch was generated, in which values closer to one means that the discriminator is being fooled, while values closer to zero means that the discriminator is not being fooled by the generator: 
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/diffiicultiesFoolingDiscriminator.png "Discriminator output")
 
-As the above image shows, the translation task from photos to segmentations is alot harder than segmentations to photos.  
+As the above image shows, that for this 16x1translation task from photos to segmentations is alot harder than segmentations to photos.  
 
 Then I trained the model for another 50 epochs using stochastic gradient descent  with the same learning rate and a linear decay rate of the learning rate over 50. The following five test images were generated:
 
+![alt text]()
+![alt text]()
+![alt text]()
+![alt text]()
+![alt text]()
 
+The following image shows the translations from  photos to segmentations and vice versa:
+
+![alt text]()
+
+And to see which of the two discriminators were less accurate in regards to the image translation task, one 16x16 output patch was generated, in which values closer to one means that the discriminator is being fooled, while values closer to zero means that the discriminator is not being fooled by the generator:
+
+![alt text]()
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
