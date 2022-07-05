@@ -70,7 +70,7 @@ The sorce code for this example can be found here: [DCGAN-MINST Fashion](https:/
 
 ### Example 2: Deep Convolutional GAN using the Celeb-A Faces Dataset:
 
-Using a Using a deep convolution GAN to create new faces from a Gaussian distribution trained using the [Celeb-A Faces
+Using a deep convolution GAN to create new faces from a Gaussian distribution trained using the [Celeb-A Faces
 dataset](https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html). After just training for five epochs these were fake faces that were generated(note that some of them look realistic, especially the women with the blond hair, lol):
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/epoch1.png "Epoch 1")
