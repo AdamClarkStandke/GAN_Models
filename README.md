@@ -208,8 +208,9 @@ And to see which of the two discriminators were less fooled in regards to the im
 The following colab notebook can be found here: [CycleGAN](https://github.com/aCStandke/GAN_Models/blob/main/CycleGANv2020_ResNetCompositeBufferModel.ipynb)
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-# Neural style transfer
+# Theoretical underpinnings of Neural style transfer Alogithms
 
+![alt text](https://github.com/aCStandke/GAN_Models/blob/main/portrait.png "Claude Monet portrait of Adam Clark Standke")
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
