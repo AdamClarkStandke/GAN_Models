@@ -216,7 +216,13 @@ Neural style transfer algorithms use Convolutional Neural Networks (CNN) to do c
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/VGG-19.png "VGG-19 Model")
 
+## Neural Style Transfer Loss functions:
 
+**Content loss**
+>  ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/contentloss.png)
+
+**Style loss**
+>  ![alt text]()
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
