@@ -212,7 +212,7 @@ The following colab notebook can be found here: [CycleGAN](https://github.com/aC
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/portrait.png "Claude Monet portrait of Adam Clark Standke")
 
-Neural style transfer algorithms use Convolutional Neural Networks (CNN) to do content reconstructions and style reconstructions by computing correlations between the different features in the different layers of the CNN.[^10] As [^10] states the VGG-19 CNN Network was used, but only the 16 convolutional and 5 pooling layers were used and none of the fully connected layers were used [^10]. Shown in the figure below is the complete VGG-19 CNN network:   
+Neural style transfer algorithms use Convolutional Neural Networks (CNN) to do content reconstructions and style reconstructions by computing correlations between the different features in the different layers of the CNN.[^10] As [^10] states the VGG-19 CNN Network was used, but only the 16 convolutional and 5 pooling layers were used and none of the fully connected layers were used.[^10] Furthermore, the max pooling operations were replaced by average pooling operations, since the authors found that the gradient flow was improved leading to better results.[^10] Shown in the figure below is the complete VGG-19 CNN network:   
 
 ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/VGG-19.png "VGG-19 Model")
 
@@ -229,4 +229,4 @@ Neural style transfer algorithms use Convolutional Neural Networks (CNN) to do c
 Franke, U., Roth, S., Schiele, B.: The cityscapes dataset for semantic urban scene
 understanding. In: CVPR. (2016)
 [^9]: [ICNet for Real-Time Semantic Segmentation](https://hszhao.github.io/papers/eccv18_icnet.pdf) 
-[^10]:[A Neural Algorithm of Artistic Style(https://arxiv.org/pdf/1508.06576.pdf)
+[^10]:[A Neural Algorithm of Artistic Style](https://arxiv.org/pdf/1508.06576.pdf)
