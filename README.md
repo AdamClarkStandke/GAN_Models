@@ -227,6 +227,8 @@ Neural style transfer algorithms use Convolutional Neural Networks (CNN) to do c
 
 **Total loss**
 > ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/total_loss.png)[^10]
+
+The following colab notebook can be found here: [NeuralStyleTransfer](https://github.com/aCStandke/GAN_Models/blob/main/NeuralTransferModel.ipynb)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 [^1]: [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf)
 [^2]: [UNSUPERVISED REPRESENTATION LEARNING WITH DEEP CONVOLUTIONAL GENERATIVE ADVERSARIAL NETWORKS](https://arxiv.org/pdf/1511.06434.pdf)
