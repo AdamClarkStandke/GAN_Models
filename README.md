@@ -219,14 +219,25 @@ Neural style transfer algorithms use Convolutional Neural Networks (CNN) to do c
 ## Neural Style Transfer Loss functions:
 
 **Content loss**
->  ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/contentloss.png)[^10]
+>  ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/contentloss.png "Content Loss")[^10]
 
 **Style loss**
->  ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/GramMatrix.png)[^10]
->  ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/style_loss.png)[^10]
+>  ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/GramMatrix.png "Gram Matrix")[^10]
+>  ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/style_loss.png "Style Loss")[^10]
 
 **Total loss**
-> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/total_loss.png)[^10]
+> ![alt text](https://github.com/aCStandke/GAN_Models/blob/main/total_loss.png "Total Loss")[^10]
+
+### Example 5: Applying Neural Style Transfer Model on my Face!!!:
+After reading and implementing the tensorflow tutorial on [Neural style transfer](https://www.tensorflow.org/tutorials/generative/style_transfer). The implementation basically followed the tutorial and the orginal paper. Instead of using the VGG-19 model from the tutorial, I used the VGG-19 model from the paper; namely, instead of using max pooling, I used average pooling as stated in [^10]. I also used differnt weighting than the tutorial and followed the paper for the ratio amounts; namely I used 1 for beta and 1000 for alpha which gave a ratio of 1x10<super>-3<super>. Unlike the paper, I at first tried to implement [LBFGS](https://en.wikipedia.org/wiki/Limited-memory_BFGS) as the gradient method, but was a lot harder than just using tensorflow's implementation [lbfgs_minimize](https://www.tensorflow.org/probability/api_docs/python/tfp/optimizer/lbfgs_minimize) or scipy's implementation [fmin_l_bfgs_b](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin_l_bfgs_b.html), due to the fact that both implementations rely on the data being one dimensional!!! So I just used [Adam](https://arxiv.org/pdf/1412.6980.pdf) a first-order sgd method rather than LBFGS which is a second-order sgd method. This was the content image I used:
+
+[alt text](https://github.com/aCStandke/GAN_Models/blob/main/total_loss.png, "Me")
+
+These were the style images I used the first one was by Pierre Auguste Renoir, titled Portrait of Claude Monet and the second one is Ip Man from Tekken 7:
+
+[alt text](https://github.com/aCStandke/GAN_Models/blob/main/total_loss.png, "Pierre Auguste Renoir, Portrait of Claude Monet")
+
+[alt text](https://github.com/aCStandke/GAN_Models/blob/main/total_loss.png, "Ip Man")
 
 The following colab notebook can be found here: [NeuralStyleTransfer](https://github.com/aCStandke/GAN_Models/blob/main/NeuralTransferModel.ipynb)
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
